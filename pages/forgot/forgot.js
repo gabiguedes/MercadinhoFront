@@ -23,7 +23,7 @@ class Forgot {
 			success: function (data, textStatus, request) {  // recebe uma lista de pessoas
                 // ler a lista de pessoas e monta sua tabela
                 
-				alert(data.senha);
+				alert(`Sua senha é: ${data.senha}`);
 			},
 			error: function (err) {
 				console.log(err);
