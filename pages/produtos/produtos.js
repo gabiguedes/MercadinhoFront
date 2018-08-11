@@ -1,0 +1,6 @@
+class Produtos {
+
+    constructor() {
+        
+    }
+}
