@@ -20,9 +20,7 @@ class Forgot {
             headers: {
                 "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYWJyaWVsYV9yYXlzc2FAaG90bWFpbC5jb20iLCJleHAiOjE1MzQ3MDAzNDh9.CBydrqX6iSj3FvLCLEol_x_9UkvfQcs3ZmNSHhDrLgy6OdaS6u4Ks0hP4RepY7STM4lLijX_IY87PTEFnfj90Q"
                 },
-			success: function (data, textStatus, request) {  // recebe uma lista de pessoas
-                // ler a lista de pessoas e monta sua tabela
-                
+			success: function (data, textStatus, request) {
 				alert(`Sua senha é: ${data.senha}`);
 			},
 			error: function (err) {
