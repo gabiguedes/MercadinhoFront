@@ -23,22 +23,23 @@
     <div class="card" style="width: 50rem;">
         <div class="card-body">
             <div class="container">
-                <form>
+                <form id="editar_perfil">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Name</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="novo nome">
+                        <input type="text" class="form-control" id="nome" placeholder="novo nome" required>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="novo email">
+                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="novo email" required>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="novo senha">
+                        <input type="password" class="form-control" id="senha" placeholder="nova senha">
                     </div>
-
                     <button type="submit" class="btn btn-primary">ALTERAR</button>
                 </form>
+                <P class="my--p">OU</P>
+                <a href="../categoria/categoria.html"><button type="submit" class="btn btn-primary">CONTINUAR</button></a>
             </div>
         </div>
     </div>
@@ -55,6 +56,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous">
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="perfil.js"></script>
 
 </body>

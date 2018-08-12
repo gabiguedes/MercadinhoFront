@@ -1,48 +1,43 @@
-function statusChangeCallback(response) {
-    console.log('statusChangeCallback');
-    console.log(response);
-    if (response.status === 'connected') {
-        testAPI();
+function setToken(token){		
+    if(typeof(Storage) !== "undefined") {
+        localStorage.setItem("token_mercadinho", token);
     } else {
-        document.getElementById('status').innerHTML = 'Please log ' +
-            'into this app.';
+        alert("Seu navegador não suporta LocalStorage");
     }
 }
 
-function checkLoginState() {
-    FB.getLoginStatus(function (response) {
-        statusChangeCallback(response);
-    });
+function getToken(){		
+    return localStorage.getItem("token_mercadinho");
 }
 
-window.fbAsyncInit = function () {
-    FB.init({
-        appId: '1873838009592390',
-        cookie: true,
-        xfbml: true,
-        version: 'v2.8'
+$(function () {	
+    // submit do formulario
+    $("#login").submit(function (event) {
+    
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            'type': 'POST',
+            'url': "http://localhost:8080/login",
+            'data': JSON.stringify(
+                {
+                    "email": $("#email").val(),
+                    "senha": $("#senha").val()
+                }
+            ),
+            success: function (response, textStatus, request) {
+            // setToken(); coloca aqui request do Authorization	
+                localStorage.setItem("token_mercadinho", request.getResponseHeader('Authorization'));
+                localStorage.setItem("user_mercadinho", $("#email").val());
+                window.location = "../perfil/perfil.html";
+            },
+            error: function (error) {
+                alert("Usuário inválido");
+            }
+        });
+
+        event.preventDefault();
     });
-
-    FB.getLoginStatus(function (response) {
-        statusChangeCallback(response);
-    });
-
-};
-
-(function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s);
-    js.id = id;
-    js.src = "https://connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-
-function testAPI() {
-    console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function (response) {
-        console.log('Successful login for: ' + response.name);
-        document.getElementById('status').innerHTML =
-            'Thanks for logging in, ' + response.name + '!';
-    });
-}
+});
