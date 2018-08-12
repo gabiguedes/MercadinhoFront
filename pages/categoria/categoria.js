@@ -38,7 +38,7 @@ $.ajax({
 		});
 	},
 	error: function (err, textStatus) {
-		if (textStatus == "403") {
+		if (err.status == "403") {
 			alert("Sessão expirada");
 			window.location = "../login/login.html";
 		}
