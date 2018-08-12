@@ -1,7 +1,7 @@
-function setStorage(token, email) {
+function setStorage(token,email) {
     if (typeof (Storage) !== "undefined") {
         localStorage.setItem("token_mercadinho", token);
-        localStorage.setItem("user_mercadinho", email);
+        localStorage.setItem("user_mercadinho",email);
     } else {
         alert("Seu navegador não suporta LocalStorage");
     }
@@ -22,10 +22,12 @@ $(function () {
             },
             'type': 'POST',
             'url': "http://localhost:8080/login",
-            'data': JSON.stringify({
-                "email": $("#email").val(),
-                "senha": $("#senha").val()
-            }),
+            'data': JSON.stringify(
+                {
+                    "email": $("#email").val(),
+                    "senha": $("#senha").val()
+                }
+            ),
             success: function (response, textStatus, request) {
                 // setToken(); coloca aqui request do Authorization	
                 setStorage(request.getResponseHeader('Authorization'), $("#email").val());
@@ -54,24 +56,24 @@ function logIn() {
                     'type': 'POST',
                     'dataType': "text",
                     'url': "http://localhost:8080/auth/facebook",
-                    'data': JSON.stringify({
-                        "email": userData.email,
-                        "nome": userData.name,
-                        "senha": userData.id,
-                    }),
-                    success: function (response) {
-                        setStorage(response, userData.email);
+                    'data': JSON.stringify(
+                        {
+                            "email": userData.email,
+                            "nome": userData.name,
+                            "senha": userData.id,
+                        }
+                    ),
+                    success: function (response, textStatus, request) {
+                        setStorage(request.getResponseHeader('Authorization'), userData.email);
                         window.location = "../perfil/perfil.html";
                     },
-                    error: function (error) {
+                    error: function (error) {                        
                         alert("Usuário inválido");
                     }
                 });
             });
         }
-    }, {
-        scope: 'public_profile, email '
-    });
+    }, { scope: 'public_profile, email ' });
 }
 
 window.fbAsyncInit = function () {
@@ -88,11 +90,8 @@ window.fbAsyncInit = function () {
 
 (function (d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) {
-        return;
-    }
-    js = d.createElement(s);
-    js.id = id;
+    if (d.getElementById(id)) { return; }
+    js = d.createElement(s); js.id = id;
     js.src = "https://connect.facebook.net/en_US/sdk.js";
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
