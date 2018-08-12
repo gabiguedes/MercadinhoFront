@@ -76,7 +76,7 @@ function logIn() {
 
 window.fbAsyncInit = function () {
     FB.init({
-        appId: '538692929877617',
+        appId: '1873838009592390',
         cookie: true,
         xfbml: true,
         version: 'v2.11'
