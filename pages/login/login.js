@@ -31,7 +31,7 @@ $(function () {
             success: function (response, textStatus, request) {
                 // setToken(); coloca aqui request do Authorization	
                 setStorage(request.getResponseHeader('Authorization'), $("#email").val());
-                window.location = "../perfil/perfil.html";
+                window.location = "../categoria/categoria.html";
             },
             error: function (error) {
                 alert("Usuário inválido");
@@ -65,7 +65,7 @@ function logIn() {
                     ),
                     success: function (response, textStatus, request) {
                         setStorage(request.getResponseHeader('Authorization'), userData.email);
-                        window.location = "../perfil/perfil.html";
+                        window.location = "../categoria/categoria.html";
                     },
                     error: function (error) {                        
                         alert("Usuário inválido");
